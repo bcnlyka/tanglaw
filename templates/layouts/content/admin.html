@@ -1,0 +1,94 @@
+    <div class="module">
+        <div class="module-head clearfix">
+            <h3 class="pull-left">Account Management</h3>
+            <a href="#" class="btn btn-mini btn-primary pull-right">Add Account</a>
+        </div>
+        {#@if(null !== Session::get('message'))#}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {#{{ Session::get('message') }}#}
+        </div>
+        {#@endif#}
+        <div class="module-body table">
+            <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Branch</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {#@foreach($users as $user)
+                        <tr class="">
+                            <td>
+                                {{ $user->name }}
+                            </td>
+                            <td>
+                                {{ $user->email }}
+                            </td>
+                            <td>
+                                @if($user->hasRole('admin'))
+                                    Administrator
+                                @endif
+                                    @if($user->hasRole('vp'))
+                                        VP, Branches and Campuses
+                                    @endif
+                                    @if($user->hasRole('ipo'))
+                                        IPO
+                                    @endif
+                                    @if($user->hasRole('director'))
+                                        Director
+                                    @endif
+                                    @if($user->hasRole('registrar'))
+                                        Registrar
+                                    @endif
+                            </td>
+                            <td>
+                                @if(!$user->getBranchDescription($user->id))
+                                    N/A
+                                @endif
+                                {{ $user->getBranchDescription($user->id) }}
+                            </td>
+                            <td>
+                                Active
+                            </td>#}
+                            <td>
+                                <a href="#" class="btn btn-mini btn-danger"><i class="icon-edit"></i></a>
+                                |
+                                <a href="#" class="btn btn-mini btn-info"><i class="icon-eye-open"></i></a>
+                            </td>
+                        {#</tr>
+                    @endforeach#}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Branch</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div><!--/.module-->
+
+
+{#
+
+    <script src="{{ asset('scripts/datatables/jquery.dataTables.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.datatable-1').dataTable();
+            $('.dataTables_paginate').addClass("btn-group datatable-pagination");
+            $('.dataTables_paginate > a').wrapInner('<span />');
+            $('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+            $('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+        } );
+    </script>
+@endsection#}

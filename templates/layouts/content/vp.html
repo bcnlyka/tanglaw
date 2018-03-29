@@ -1,0 +1,193 @@
+<div id="changeHead" style="display: none; margin-bottom: 25px" class="docs-example">
+        <form>
+            {#{{ csrf_field() }}#}
+            <strong>School Year</strong>
+            <select name="sy" id="sy">
+                <option selected disabled>Select School-Year</option>
+                {#@foreach($schoolyear as $sys)
+                <option value="{{ $sys->year }}">{{ $sys->description }}</option>
+                @endforeach#}
+            </select>
+            <strong>Semester</strong>
+            <select name="sem" id="sem">
+                <option selected disabled>Select School-Year</option>
+                {#@foreach($semester as $sem)
+                <option value="{{ $sem->name }}">{{ $sem->description }}</option>
+                @endforeach#}
+            </select>
+            {!! Form::button('Change Headers',['onClick' =>'changeSY()', 'class' => 'pull-right btn btn-small']) !!}
+        </form>
+</div>
+
+    <div class="clearfix">
+        <h3 class="pull-left">Executive Dashboard</h3>
+
+    </div>
+
+
+
+    <div class="btn-controls">
+        <div class="btn-box-row row-fluid">
+            <a href="#" class="btn-box big span4"><i class="icon-user left"></i><b id="total_enrollees">{#{{ $systemwide_enrollees[0]['total_enrollees'] }}#}</b>
+                <p class="text-muted">
+                    Total Students Enrolled<br/>
+                        <p class="text-muted">
+                            <small id="semester_enrollees">Second Semester</small>
+                        </p>
+                        <p class="text-muted">
+                            <small id="sy_enrollees">2017 - 2018</small>
+                        </p>
+                </p>
+            </a><a href="#" class="btn-box big span4"><i class="icon-user left"></i><b id="total_graduates">{#{{ $systemwide_graduates[0]['total_graduates'] }}#}</b>
+                <p class="text-muted">
+                    Total Graduates<br/>
+                        <p class="text-muted">
+                            <small id="semester_graduates">Second Semester</small>
+                        </p>
+                        <p class="text-muted">
+                            <small id="sy_graduates">2017 - 2018</small>
+                        </p>
+                </p>
+            </a>    <a href="#" class="btn-box big span4"><i class="icon-home"></i><b>Quezon City Branch</b>
+                <p class="text-muted">
+                    Top Branch/Campus<br><small><p id="schoolyear5" class="text-muted">Second Semester</p></small></p>
+            </a>
+        </div>
+        <div  id="extendedcontent">
+        <div class="btn-box-row row-fluid">
+            <a href="#" class="btn-box big span4"><i class="icon-file-alt"></i><b>95%</b>
+                <p class="text-muted">
+                    Completed Reports<br><small>Enrollment<p id="schoolyear3" class="text-muted">2017 - 2018</p></small></p>
+            </a><a href="#" class="btn-box big span4"><i class="icon-file-alt"></i><b>98%</b>
+                <p class="text-muted">
+                    Completed Reports<br><small>Graduates<p id="schoolyear4" class="text-muted">2017 - 2018</p></small></p>
+            </a>
+        </div>
+
+        <div class="btn-box-row row-fluid">
+            <a href="#" class="btn-box big span4"><i class="icon-file-alt"></i><b>95%</b>
+                <p class="text-muted">
+                    Completed Reports<br><small>Enrollment<p id="schoolyear3" class="text-muted">2017 - 2018</p></small></p>
+            </a><a href="#" class="btn-box big span4"><i class="icon-file-alt"></i><b>98%</b>
+                <p class="text-muted">
+                    Completed Reports<br><small>Graduates<p id="schoolyear4" class="text-muted">2017 - 2018</p></small></p>
+            </a>
+        </div>
+    </div>
+
+        <a style="cursor: pointer;" id="seemoreless" class="pull-right">See More...</a>
+        <br><br>
+    </div>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br><br>
+
+
+        <script type="text/javascript">
+
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Evaluation Results'
+    },
+    subtitle: {
+        text: 'Results of evaluation of reports'
+    },
+    xAxis: {
+        categories: [
+            'Timeliness',
+            'Completeness'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total Evaluation Grade (%)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y}%</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Quezon City Branch',
+        data: [86,98]
+
+    }, {
+        name: 'Taguig Branch',
+        data: [82,90]
+
+    }, {
+        name: 'San Juan Campus',
+        data: [80,84]
+
+    }]
+});
+        </script>
+
+    <div id="rankings" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <script type="text/javascript">
+
+Highcharts.chart('rankings', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Evaluation Rankings'
+    },
+    subtitle: {
+        text: 'Top Branch / Campus for this semester: Quezon City'
+    },
+    xAxis: {
+        categories: [
+            'SY 2017 - 2018 2nd Semester'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total Evaluation Grade (%)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y}%</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Quezon City Branch',
+        data: [92]
+
+    }, {
+        name: 'Taguig Branch',
+        data: [86]
+
+    }, {
+        name: 'San Juan Campus',
+        data: [82]
+
+    }]
+});
+ </script>

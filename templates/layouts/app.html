@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Styles -->
+    <link href="static/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/public/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="static/public/css/theme.css" rel="stylesheet">
+    <link href="static/public/images/icons/css/font-awesome.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                <i class="icon-reorder shaded"></i></a><a class="brand" href="{#{{ url('/layouts') }}#}">TANGLAW <small>Branches and Campuses</small> </a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+                <ul class="nav pull-right">
+                    <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="static/public/images/user.png" class="nav-avatar" />
+
+
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Your Profile</a></li>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Account Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" data-toggle="modal" data-target="#logoutModal">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.nav-collapse -->
+        </div>
+    </div>
+    <!-- /navbar-inner -->
+</div>
+
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="lblLogoutConfirm" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <h5 class="modal-title pull-left" id="lblLogoutConfirm">Confirm Logout</h5>
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to log out the system?
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-secondary" data-dismiss="modal">No</a>
+                <a href="{#{{ url('logout') }}#}" class="btn btn-primary">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+                {% block sidebar %}{% endblock %}
+            </div>
+            <div class="span9">
+                <div class="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/.wrapper-->
+
+<div class="footer">
+    <div class="container">
+
+
+        <b class="copyright">&copy; 2018 BRANCHES - Software Analysis and Design </b> All rights reserved.
+    </div>
+</div>
+
+    <!-- Scripts -->
+    <script src="static/public/scripts/jquery-1.9.1.min.js"></script>
+    <script src="static/public/scripts/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="static/public/bootstrap/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
